@@ -1,17 +1,31 @@
 package com.example.demo.model;
 
 import com.example.demo.Interface.CheckUserInterface;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.regex.Pattern;
-
+@Getter
+@Setter
 public class User implements CheckUserInterface {
     private String numberPhone;
     private String email;
     private String password;
 
+    public User(String numberPhone, String password) {
+        this.numberPhone = numberPhone;
+        this.password = password;
+    }
+
+    public User(String numberPhone, String email, String password) {
+        this.numberPhone = numberPhone;
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public boolean checknumberPhone(String numberPhone) {
-        String PHONE_PATTERN = "^[0-9]&&{10}";
+        String PHONE_PATTERN = "^[0-9]{10}";
         if (Pattern.matches(PHONE_PATTERN, numberPhone) == true){
             return true;
         }
